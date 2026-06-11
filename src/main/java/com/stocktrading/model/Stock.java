@@ -3,23 +3,15 @@ package com.stocktrading.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * Entity representing a publicly traded stock on the platform.
- * Prices are updated periodically by the MarketSimulator.
- */
+// Entity representing a publicly traded stock on the platform.
+// Prices are updated periodically by the MarketSimulator.
 @Entity
 @Table(name = "stocks")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Stock {
 
     @Id
@@ -47,4 +39,74 @@ public class Stock {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+
+    public Stock() {
+    }
+
+    public Stock(Long id, String symbol, String companyName, BigDecimal currentPrice,
+                 BigDecimal previousClose, Long volume, LocalDateTime updatedAt) {
+        this.id = id;
+        this.symbol = symbol;
+        this.companyName = companyName;
+        this.currentPrice = currentPrice;
+        this.previousClose = previousClose;
+        this.volume = volume;
+        this.updatedAt = updatedAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public BigDecimal getCurrentPrice() {
+        return currentPrice;
+    }
+
+    public void setCurrentPrice(BigDecimal currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
+    public BigDecimal getPreviousClose() {
+        return previousClose;
+    }
+
+    public void setPreviousClose(BigDecimal previousClose) {
+        this.previousClose = previousClose;
+    }
+
+    public Long getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Long volume) {
+        this.volume = volume;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
